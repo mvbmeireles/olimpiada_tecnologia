@@ -1,0 +1,46 @@
+# .gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python/
+env/
+olimpiada_venv/
+bin/
+include/
+lib/
+lib64/
+local/
+share/
+*.egg-info/
+.coverage
+.pytest_cache/
+htmlcov/
+.nox/
+.tox/
+.cache/
+.mypy_cache/
+.vscode/ # Opcional: ignorar configurações do VS Code se você usa
+
+# Django
+db.sqlite3 # Ignorar o banco de dados SQLite local
+*.log
+*.pot
+*.mo
+media/ # Se você tiver uma pasta 'media' para uploads de usuários, ignore-a
+static_cdn/ # Se você tiver uma pasta para estáticos coletados, ignore-a
+staticfiles/ # Ignorar a pasta STATIC_ROOT (se você usou)
+
+# Ambientes de IDEs
+.idea/ # Para IntelliJ IDEA / PyCharm
+*.iml
+.project
+.classpath
+.settings/
+.vscode/
+
+# Outros
+.DS_Store # macOS
+Thumbs.db # Windows

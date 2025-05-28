@@ -1,0 +1,263 @@
+/* cards/static/cards/style.css */
+
+/* Variáveis CSS para cores e fontes */
+:root {
+    --bg-color-dark: #1a1a2e; /* Fundo escuro */
+    --card-bg-color: #2b2b4d; /* Fundo dos cartões */
+    --card-border-color: #4a4a70; /* Borda leve dos cartões */
+    --text-color-light: #e0e0f0; /* Texto claro */
+    --text-color-medium: #a0a0c0; /* Texto médio para detalhes */
+    --accent-color-green: #28a745; /* Verde para 'intacto' */
+    --accent-color-red: #dc3545; /* Vermelho para 'avaliado' */
+    --search-bg-color: #3b3b6b; /* Fundo da barra de pesquisa */
+    --search-border-color: #5b5b8b; /* Borda da barra de pesquisa */
+    --pagination-bg-color: #2b2b4d; /* Fundo da paginação */
+    --pagination-border-color: #4a4a70; /* Borda da paginação */
+    --pagination-active-bg: #4a4a70; /* Fundo do item de paginação ativo */
+
+    --font-primary: 'Roboto', sans-serif;
+    --font-secondary: 'Orbitron', sans-serif; /* Para títulos ou elementos de destaque */
+}
+
+/* Reset básico e estilos gerais do corpo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-light);
+    display: flex; /* Para centralizar o container */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Altura mínima da viewport */
+    background-image: url('./5509862.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Contêiner principal do site */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: rgba(26, 26, 46, 0.7); /* Fundo com transparência para o background brilhar */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Espaço entre as seções */
+}
+
+/* Estilos do Cabeçalho */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--card-border-color); /* Linha sutil no final do header */
+}
+
+.logo-placeholder .circle {
+    width: 40px;
+    height: 40px;
+    background-color: var(--search-border-color); /* Cor para o círculo do logo */
+    border-radius: 50%;
+    border: 1px solid var(--text-color-medium);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--search-bg-color);
+    border: 1px solid var(--search-border-color);
+    border-radius: 20px;
+    padding: 5px 15px;
+    width: 300px;
+    max-width: 100%;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-color-light);
+    font-size: 1rem;
+    padding-right: 10px;
+}
+
+.search-bar input::placeholder {
+    color: var(--text-color-medium);
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    color: var(--text-color-medium);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Estilos da Seção Principal e Grade de Cartões */
+.main-content {
+    flex-grow: 1; /* Para ocupar o espaço restante */
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Colunas responsivas */
+    gap: 20px; /* Espaço entre os cartões */
+    justify-content: center; /* Centraliza a grade */
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: 8px;
+    overflow: hidden; /* Garante que a imagem não vaze */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out; /* Efeito de hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Levanta o cartão no hover */
+}
+
+.card-image-placeholder {
+    width: 100%;
+    height: 150px; /* Altura do placeholder da imagem */
+    background-color: var(--search-bg-color); /* Cor de fundo para o placeholder */
+    border-bottom: 1px solid var(--card-border-color);
+}
+
+.card-title {
+    font-family: var(--font-secondary); /* Fonte Orbitron para o título */
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 15px;
+    min-height: 70px; /* Garante altura mínima para títulos mais curtos */
+    display: flex;
+    align-items: center;
+    color: var(--text-color-light);
+}
+
+.card-status {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-color-medium);
+    border-top: 1px solid var(--card-border-color);
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-intacto .status-indicator {
+    background-color: var(--accent-color-green);
+}
+
+.status-avariado .status-indicator {
+    background-color: var(--accent-color-red);
+}
+
+/* Estilos da Paginação */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--pagination-bg-color);
+    border: 1px solid var(--pagination-border-color);
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-top: 20px; /* Espaço acima da paginação */
+    align-self: center; /* Centraliza a paginação no container */
+}
+
+.page-link {
+    text-decoration: none;
+    color: var(--text-color-light);
+    padding: 8px 15px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.page-link:hover {
+    background-color: var(--pagination-border-color);
+}
+
+.page-link.current-page {
+    background-color: var(--pagination-active-bg);
+    color: var(--text-color-light);
+}
+
+/* Estilos do Rodapé */
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid var(--card-border-color);
+    font-size: 0.85rem;
+    color: var(--text-color-medium);
+}
+
+.footer a {
+    color: var(--text-color-light);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste para telas menores */
+    }
+
+    .container {
+        padding: 15px;
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-title {
+        font-size: 1rem;
+        min-height: 60px;
+    }
+
+    .pagination {
+        gap: 5px;
+        padding: 8px 15px;
+    }
+
+    .page-link {
+        padding: 6px 12px;
+    }
+}
