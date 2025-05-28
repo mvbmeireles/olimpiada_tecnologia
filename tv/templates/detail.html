@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {# Título dinâmico para a aba do navegador #}
+    <title>Detalhes do Projeto - {{ projeto.titulo }}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container detail-page">
+        <header class="header">
+            <div class="logo-placeholder">
+                <div class="circle"></div>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Pesquisar">
+                <button type="submit">
+                    🔍
+                </button>
+            </div>
+        </header>
+
+        <div class="back-button-container">
+            <a href="{% url 'lista_cartoes' %}" class="back-button">← Voltar</a>
+        </div>
+
+        <main class="project-detail-content">
+            <div class="project-image-column">
+                <div class="project-image-placeholder">
+                    <img src=""
+                         alt="" class="project-detail-image">
+                </div>
+            </div>
+
+            <div class="project-info-column">
+                <h1 class="project-detail-title">{{ projeto.titulo }}</h1>
+
+                {# Status dinâmico #}
+                <div class="project-detail-status status-{{ projeto.status }}">
+                    <span class="status-indicator"></span> {{ projeto.status }}
+                </div>
+
+                {# Bandeira do país dinâmica #}
+                <div class="project-country">
+                    {% if projeto.imagem_bandeira == 'eua_flag.png' %}
+                    <img src="{% static 'eua_flag.png' %}"
+                         alt="Bandeira do {{ projeto.pais }}" class="country-flag">
+                    {% elif projeto.imagem_bandeira == 'brazil_flag.png' %}
+                    <img src="{% static 'brazil_flag.png' %}"
+                         alt="Bandeira do {{ projeto.pais }}" class="country-flag">
+                    {% elif projeto.imagem_bandeira == 'alemanha_flag.png' %}
+                    <img src="{% static 'alemanha_flag.png' %}"
+                         alt="Bandeira do {{ projeto.pais }}" class="country-flag">
+                    {% endif %}
+                    <span>{{ projeto.pais }}</span> {# Exibe o nome do país #}
+                </div>
+
+                <h2 class="section-title">Descrição</h2>
+                <p class="project-description">
+                    {{ projeto.descricao }}
+                </p>
+
+                {# Exibir "Passo a passo para o reparo" SOMENTE se o projeto estiver avariado #}
+                {% if projeto.status == 'avariado' %}
+                    <h2 class="section-title">Passo a passo para o reparo</h2>
+                    <ul class="repair-steps" data-project-id="{{ projeto.id }}"> {# Adicione data-project-id aqui! #}
+                        {% for passo in projeto.passos_de_reparo %}
+                            <li class="repair-step-item">
+                                {# Adicione data-index e o atributo 'checked' #}
+                                <input type="checkbox" id="step{{ forloop.counter }}"
+                                       data-index="{{ forloop.counter0 }}" {# forloop.counter0 para índice baseado em 0 #}
+                                       {% if passo.concluido %}checked{% endif %}>
+                                <label for="step{{ forloop.counter }}">{{ passo.descricao }}</label>
+                            </li>
+                        {% endfor %}
+
+                        <li class="add-new-item-form">
+                            <input type="text" id="new-step-description" placeholder="Descreva o novo passo...">
+                            <button id="add-step-button">Adicionar</button>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </main>
+
+        <footer class="footer">
+            background por <a href="https://www.freepik.com/" target="_blank">Freepik</a>
+        </footer>
+    </div>
+    <script src="{% static 'main.js' %}"></script>
+</body>
+</html>

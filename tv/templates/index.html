@@ -24,69 +24,18 @@
 
         <main class="main-content">
             <div class="cards-grid">
-                <div class="card">
-                    <div class="card-image-placeholder"></div>
-                    <div class="card-title">Densidade óssea e muscular em microgravidade</div>
-                    <div class="card-status status-intacto">
-                        <span class="status-indicator"></span> intacto
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image-placeholder"></div>
-                    <div class="card-title">Materiais resistentes à radiação espacial</div>
-                    <div class="card-status status-avariado">
-                        <span class="status-indicator"></span> avariado
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image-placeholder"></div>
-                    <div class="card-title">Comportamento de fluidos em microgravidade</div>
-                    <div class="card-status status-avariado">
-                        <span class="status-indicator"></span> avariado
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image-placeholder"></div>
-                    <div class="card-title">Microrganismos em ambiente extremo</div>
-                    <div class="card-status status-intacto">
-                        <span class="status-indicator"></span> intacto
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image-placeholder"></div>
-                    <div class="card-title">Crescimento de plantas em microgravidade</div>
-                    <div class="card-status status-intacto">
-                        <span class="status-indicator"></span> intacto
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image-placeholder"></div>
-                    <div class="card-title">Regeneração de tecidos em microgravidade</div>
-                    <div class="card-status status-avariado">
-                        <span class="status-indicator"></span> avariado
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image-placeholder"></div>
-                    <div class="card-title">Comunicação por rádio no espaço</div>
-                    <div class="card-status status-intacto">
-                        <span class="status-indicator"></span> intacto
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-image-placeholder"></div>
-                    <div class="card-title">Cristalização de proteínas em microgravidade</div>
-                    <div class="card-status status-avariado">
-                        <span class="status-indicator"></span> avariado
-                    </div>
-                </div>
+                {# Loop pelos projetos que foram passados da view #}
+                {% for projeto in projetos %}
+                    <a href="{% url 'detalhes_projeto' projeto.id %}" class="card-link"> {# <-- AQUI ESTÁ A MUDANÇA! Passamos projeto.id #}
+                        <div class="card">
+                            <div class="card-image-placeholder"></div>
+                            <div class="card-title">{{ projeto.titulo }}</div> {# Exibe o título do projeto dinamicamente #}
+                            <div class="card-status status-{{ projeto.status }}"> {# Classificação dinâmica do status #}
+                                <span class="status-indicator"></span> {{ projeto.status }}
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %} {# Fim do loop #}
             </div>
         </main>
 
